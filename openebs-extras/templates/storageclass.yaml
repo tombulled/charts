@@ -1,0 +1,10 @@
+{{- range $name, $value := .Values.storageClasses -}}
+{{- $default := ternary $value.default true (ne $value.default nil) -}}
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: {{ $name | quote }}
+  labels: {{- include "common.labels" $ | nindent 4 }}
+  annotations:
+    storageclass.kubernetes.io/is-default-class: {{ $default | quote }}
+{{- end -}}

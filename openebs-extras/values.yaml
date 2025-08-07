@@ -1,0 +1,4 @@
+# storageClasses: []
+storageClasses:
+  foo:
+    default: false

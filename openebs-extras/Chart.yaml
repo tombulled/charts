@@ -1,0 +1,9 @@
+apiVersion: v2
+name: openebs-extras
+description: A Helm chart for OpenEBS Extras
+type: application
+version: 0.1.0
+dependencies:
+  - name: common
+    repository: file://../common
+    version: 0.x.x
