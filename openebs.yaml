@@ -14,6 +14,12 @@ spec:
       helm:
         valueFiles:
           - $values/openebs/values.yaml
+    - repoURL: https://github.com/tombulled/charts
+      path: openebs-extras
+      targetRevision: feature/argo-cd # HEAD
+      helm:
+        valueFiles:
+          - $values/openebs/values.yaml
     - repoURL: https://github.com/tombulled/values
       targetRevision: feature/argo-cd # HEAD
       ref: values
