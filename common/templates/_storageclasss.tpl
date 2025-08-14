@@ -1,5 +1,6 @@
 {{- define "common.storageclass" -}}
 {{- $ := index . "$" -}}
+{{- $hasIsDefaultClass := ne .isDefaultClass nil }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -8,10 +9,10 @@ metadata:
     {{- with .labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
-  {{- if or .annotations (ne .isDefaultClass nil) }}
+  {{- if or .annotations $hasIsDefaultClass }}
   annotations:
-    {{- with .isDefaultClass }}
-    storageclass.kubernetes.io/is-default-class: {{ . | quote }}
+    {{- if $hasIsDefaultClass }}
+    storageclass.kubernetes.io/is-default-class: {{ .isDefaultClass | quote }}
     {{- end }}
     {{- with .annotations }}
     {{- toYaml . | nindent 4 }}

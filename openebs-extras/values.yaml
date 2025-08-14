@@ -1,7 +1,11 @@
 storageClasses:
-  foo:
+  openebs-zfs:
     enabled: false
-    isDefaultClass: true
-    # labels: {}
-    # annotations:
-    #   foo: bar
+    allowVolumeExpansion: true
+    parameters:
+      recordsize: "128k"
+      compression: "off"
+      dedup: "off"
+      fstype: "zfs"
+      poolname: "zfspv-pool"
+    provisioner: zfs.csi.openebs.io
