@@ -20,6 +20,11 @@ spec:
   destination:
     name: in-cluster
     namespace: default
+  info:
+    - name: "Source:"
+      value: "https://github.com/minio/operator/tree/master/helm/operator"
+    - name: "Docs:"
+      value: "https://docs.min.io/community/minio-object-store/operations/deployments/k8s-minio-operator.html"
   syncPolicy:
     automated:
       prune: true
