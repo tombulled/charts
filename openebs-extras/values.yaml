@@ -1,4 +1,7 @@
-# storageClasses: []
 storageClasses:
   foo:
-    default: false
+    enabled: false
+    isDefaultClass: true
+    # labels: {}
+    # annotations:
+    #   foo: bar
