@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://helm.min.io/
+      chart: minio
+      targetRevision: 8.0.10
+      helm:
+        valueFiles:
+          - $values/minio/values.yaml
+    - repoURL: https://github.com/tombulled/values
+      targetRevision: feature/argo-cd # HEAD
+      ref: values
+  destination:
+    name: in-cluster
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
