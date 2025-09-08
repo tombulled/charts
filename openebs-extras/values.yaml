@@ -1,6 +1,6 @@
 storageClasses:
   openebs-zfs:
-    enabled: false
+    enabled: true
     allowVolumeExpansion: true
     parameters:
       recordsize: "128k"

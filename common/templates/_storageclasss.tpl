@@ -38,3 +38,16 @@ reclaimPolicy: {{ . | quote }}
 volumeBindingMode: {{ . | quote }}
 {{- end }}
 {{- end }}
+
+{{- define "common.storageclasses" -}}
+{{- $ := index . "$" -}}
+{{- $storageClasses := index . "storageClasses" }}
+{{- range $name, $value := $storageClasses }}
+{{- $enabled := ternary .enabled true (ne .enabled nil) }}
+{{- $_ := set $value "$" $ }}
+{{- $_ := set $value "name" $name }}
+{{- if $enabled }}
+{{- include "common.storageclass" . }}
+{{- end }}
+{{- end }}
+{{- end }}
