@@ -4,6 +4,6 @@ description: Common Helm Chart
 type: application
 version: 0.1.0
 dependencies:
-  - name: common
-    repository: file://../common
+  - name: common-library
+    repository: file://../common-library
     version: 0.x.x
