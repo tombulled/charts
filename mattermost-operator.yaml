@@ -13,7 +13,7 @@ spec:
       targetRevision: 1.0.3
       helm:
         valueFiles:
-          - $values/mattermost/values.yaml
+          - $values/mattermost-operator/values.yaml
     - repoURL: https://github.com/tombulled/values
       targetRevision: feature/argo-cd # HEAD
       ref: values
