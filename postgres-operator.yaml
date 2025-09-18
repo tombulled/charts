@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-operator
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/zalando/postgres-operator.git
+      path: charts/postgres-operator
+      targetRevision: v1.14.0
+      helm:
+        valueFiles:
+          - $values/postgres-operator/values.yaml
+    - repoURL: https://github.com/tombulled/values
+      targetRevision: feature/argo-cd # HEAD
+      ref: values
+  destination:
+    name: in-cluster
+    namespace: default
+  info:
+    - name: "Source:"
+      value: "https://github.com/zalando/postgres-operator/tree/master/charts/postgres-operator"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
