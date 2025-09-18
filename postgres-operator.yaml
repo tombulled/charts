@@ -8,8 +8,10 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://github.com/zalando/postgres-operator.git
-      path: charts/postgres-operator
+    # - repoURL: https://github.com/zalando/postgres-operator.git
+    #   path: charts/postgres-operator
+    - repoURL: https://opensource.zalando.com/postgres-operator/charts/postgres-operator
+      path: postgres-operator
       targetRevision: v1.14.0
       helm:
         valueFiles:
