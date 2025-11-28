@@ -27,6 +27,8 @@ spec:
       value: "https://traefik.io/"
     - name: "Documentation"
       value: "https://doc.traefik.io/traefik/setup/kubernetes/"
+    - name: "Artifact Hub"
+      value: "https://artifacthub.io/packages/helm/traefik/traefik"
   syncPolicy:
     automated:
       prune: true
