@@ -10,12 +10,12 @@ spec:
   sources:
     - repoURL: https://github.com/tombulled/charts
       path: common
-      targetRevision: feature/homer-operator # HEAD
+      targetRevision: HEAD
       helm:
         valueFiles:
           - $values/homer/values.yaml
     - repoURL: https://github.com/tombulled/values
-      targetRevision: feature/homer-operator # HEAD
+      targetRevision: HEAD
       ref: values
   destination:
     name: in-cluster
