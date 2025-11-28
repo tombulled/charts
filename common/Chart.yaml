@@ -1,0 +1,9 @@
+apiVersion: v2
+name: common
+description: Common Helm Chart
+type: application
+version: 0.1.0
+dependencies:
+  - name: common-library
+    repository: file://../common-library
+    version: 0.x.x

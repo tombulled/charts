@@ -1,0 +1,11 @@
+apiVersion: installation.mattermost.com/v1beta1
+kind: Mattermost
+metadata:
+  name: {{ .Values.mattermost.name }}
+  labels:
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app.kubernetes.io/name: {{ default .Chart.Name .Values.nameOverride | trunc 50 | trimSuffix "-" }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+{{ toYaml .Values.mattermost.spec | indent 2}}

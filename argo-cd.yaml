@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-cd
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: 9.0.5
+      helm:
+        valueFiles:
+          - $values/argo-cd/values.yaml
+    - repoURL: https://github.com/tombulled/values
+      targetRevision: feature/argo-cd # HEAD
+      ref: values
+  destination:
+    name: in-cluster
+    namespace: argocd
+  info:
+    - name: "Docs:"
+      value: "https://argo-cd.readthedocs.io/en/stable/"
+    - name: "Chart:"
+      value: "https://artifacthub.io/packages/helm/argo/argo-cd"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

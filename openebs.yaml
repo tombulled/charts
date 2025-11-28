@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openebs
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://openebs.github.io/openebs
+      chart: openebs
+      targetRevision: 4.3.2
+      helm:
+        valueFiles:
+          - $values/openebs/values.yaml
+    - repoURL: https://github.com/tombulled/charts
+      path: common
+      targetRevision: feature/argo-cd # HEAD
+      helm:
+        valueFiles:
+          - $values/openebs/values.yaml
+    # - repoURL: https://github.com/tombulled/charts
+    #   path: openebs-extras
+    #   targetRevision: feature/argo-cd # HEAD
+    #   helm:
+    #     valueFiles:
+    #       - $values/openebs/values.yaml
+    - repoURL: https://github.com/tombulled/values
+      targetRevision: feature/argo-cd # HEAD
+      ref: values
+  destination:
+    name: in-cluster
+    namespace: openebs
+  info:
+    - name: 'Artifact Hub:'
+      value: 'https://artifacthub.io/packages/helm/openebs/openebs'
+    - name: 'Website:'
+      value: 'https://openebs.io/'
+    - name: 'Docs:'
+      value: 'https://openebs.io/docs'
+    - name: 'GitHub:'
+      value: 'https://github.com/openebs/openebs'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

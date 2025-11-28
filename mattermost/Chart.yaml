@@ -1,0 +1,5 @@
+apiVersion: v2
+name: mattermost
+description: A Helm chart for Mattermost
+type: application
+version: 0.1.0

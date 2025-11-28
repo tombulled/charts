@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-operator
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://cloudnative-pg.io/charts/
+      chart: cloudnative-pg
+      targetRevision: 0.26.1
+      helm:
+        valueFiles:
+          - $values/postgres-operator/values.yaml
+    - repoURL: https://github.com/tombulled/values
+      targetRevision: feature/argo-cd # HEAD
+      ref: values
+  destination:
+    name: in-cluster
+    namespace: default
+  info:
+    - name: "Source:"
+      value: "https://github.com/cloudnative-pg/charts/tree/main/charts/cloudnative-pg"
+    - name: "Documentation:"
+      value: "https://cloudnative-pg.io/docs/"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
