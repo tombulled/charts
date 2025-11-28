@@ -15,7 +15,7 @@ spec:
         valueFiles:
           - $values/homer-operator/values.yaml
     - repoURL: https://github.com/tombulled/values
-      targetRevision: feature/homer-operator # HEAD
+      targetRevision: HEAD
       ref: values
   destination:
     name: in-cluster

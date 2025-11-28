@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: https://github.com/tombulled/charts
       path: app-of-apps
-      targetRevision: feature/homer-operator # HEAD
+      targetRevision: HEAD
   destination:
     name: in-cluster
     namespace: argocd
