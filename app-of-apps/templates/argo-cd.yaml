@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: https://argoproj.github.io/argo-helm
       chart: argo-cd
-      targetRevision: 9.0.5
+      targetRevision: 9.1.4
       helm:
         valueFiles:
           - $values/argo-cd/values.yaml
@@ -21,6 +21,8 @@ spec:
     name: in-cluster
     namespace: argocd
   info:
+    - name: "Source":
+      value: "https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd"
     - name: "Docs:"
       value: "https://argo-cd.readthedocs.io/en/stable/"
     - name: "Chart:"
