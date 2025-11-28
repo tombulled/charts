@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres
+  name: mattermost
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -9,13 +9,13 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/tombulled/charts
-      path: common
-      targetRevision: feature/argo-cd # HEAD
+      path: mattermost
+      targetRevision: HEAD
       helm:
         valueFiles:
-          - $values/postgres/values.yaml
+          - $values/mattermost/values.yaml
     - repoURL: https://github.com/tombulled/values
-      targetRevision: feature/argo-cd # HEAD
+      targetRevision: HEAD
       ref: values
   destination:
     name: in-cluster
