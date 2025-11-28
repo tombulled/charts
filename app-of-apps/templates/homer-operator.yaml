@@ -8,12 +8,12 @@ metadata:
 spec:
   project: default
   sources:
-    # - repoURL: https://github.com/tombulled/charts
-    #   path: common
-    #   targetRevision: HEAD
-    #   helm:
-    #     valueFiles:
-    #       - $values/homer-operator/values.yaml
+    - repoURL: https://github.com/rajsinghtech/homer-operator
+      path: charts/homer-operator
+      targetRevision: v0.0.19
+      helm:
+        valueFiles:
+          - $values/homer-operator/values.yaml
     - repoURL: https://github.com/tombulled/values
       targetRevision: feature/homer-operator # HEAD
       ref: values
