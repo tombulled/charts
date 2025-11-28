@@ -1,31 +1,33 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: minio-operator
+  name: postgres-operator
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   sources:
-    - repoURL: https://operator.min.io
-      chart: operator
-      targetRevision: 7.1.1
+    - repoURL: https://cloudnative-pg.io/charts/
+      chart: cloudnative-pg
+      targetRevision: 0.26.1
       helm:
         valueFiles:
-          - $values/minio-operator/values.yaml
+          - $values/postgres-operator/values.yaml
     - repoURL: https://github.com/tombulled/values
-      targetRevision: feature/argo-cd # HEAD
+      targetRevision: HEAD
       ref: values
   destination:
     name: in-cluster
     namespace: default
   info:
     - name: "Source:"
-      value: "https://github.com/minio/operator/tree/master/helm/operator"
-    - name: "Docs:"
-      value: "https://docs.min.io/community/minio-object-store/operations/deployments/k8s-minio-operator.html"
+      value: "https://github.com/cloudnative-pg/charts/tree/main/charts/cloudnative-pg"
+    - name: "Documentation:"
+      value: "https://cloudnative-pg.io/docs/"
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - ServerSideApply=true

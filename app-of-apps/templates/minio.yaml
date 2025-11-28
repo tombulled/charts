@@ -1,30 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-cd
+  name: minio
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   sources:
-    - repoURL: https://argoproj.github.io/argo-helm
-      chart: argo-cd
-      targetRevision: 9.0.5
+    - repoURL: https://operator.min.io/
+      chart: tenant
+      targetRevision: 7.1.1
       helm:
         valueFiles:
-          - $values/argo-cd/values.yaml
+          - $values/minio/values.yaml
     - repoURL: https://github.com/tombulled/values
-      targetRevision: feature/argo-cd # HEAD
+      targetRevision: HEAD
       ref: values
   destination:
     name: in-cluster
-    namespace: argocd
+    namespace: default
   info:
+    - name: "Source:"
+      value: "https://github.com/minio/operator/tree/master/helm/tenant"
     - name: "Docs:"
-      value: "https://argo-cd.readthedocs.io/en/stable/"
-    - name: "Chart:"
-      value: "https://artifacthub.io/packages/helm/argo/argo-cd"
+      value: "https://docs.min.io/community/minio-object-store/reference/tenant-chart-values.html"
   syncPolicy:
     automated:
       prune: true

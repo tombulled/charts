@@ -15,7 +15,7 @@ spec:
         valueFiles:
           - $values/ingress-nginx/values.yaml
     - repoURL: https://github.com/tombulled/values
-      targetRevision: feature/argo-cd # HEAD
+      targetRevision: HEAD
       ref: values
   destination:
     name: in-cluster
