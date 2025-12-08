@@ -15,7 +15,7 @@ spec:
         valueFiles:
           - $values/traefik/values.yaml
     - repoURL: https://github.com/tombulled/values
-      targetRevision: HEAD
+      targetRevision: bugfix/fix-traefik-progressing
       ref: values
   destination:
     name: in-cluster

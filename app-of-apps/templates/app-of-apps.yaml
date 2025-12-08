@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: https://github.com/tombulled/charts
       path: app-of-apps
-      targetRevision: HEAD
+      targetRevision: bugfix/fix-traefik-progressing
   destination:
     name: in-cluster
     namespace: argocd
