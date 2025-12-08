@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: oci://quay.io/jetstack/charts/
+      chart: cert-manager
+      targetRevision: v1.19.1
+      helm:
+        valueFiles:
+          - $values/cert-manager/values.yaml
+    - repoURL: https://github.com/tombulled/values
+      targetRevision: feature/cert-manager-step-acme
+      ref: values
+  destination:
+    name: in-cluster
+    namespace: default
+  info:
+    - name: "Home:"
+      value: "https://cert-manager.io/"
+    - name: "Docs:"
+      value: "https://cert-manager.io/docs/"
+    - name: "GitHub:"
+      value: "https://github.com/cert-manager/cert-manager"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
