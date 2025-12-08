@@ -19,7 +19,7 @@ spec:
       ref: values
   destination:
     name: in-cluster
-    namespace: default
+    namespace: cert-manager
   info:
     - name: "Home:"
       value: "https://cert-manager.io/"
@@ -27,6 +27,8 @@ spec:
       value: "https://cert-manager.io/docs/"
     - name: "GitHub:"
       value: "https://github.com/cert-manager/cert-manager"
+    - name: "ArtifactHub:"
+      value: "https://artifacthub.io/packages/helm/cert-manager/cert-manager"
   syncPolicy:
     automated:
       prune: true
