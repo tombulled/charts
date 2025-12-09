@@ -15,7 +15,7 @@ spec:
         valueFiles:
           - $values/argo-cd/values.yaml
     - repoURL: https://github.com/tombulled/values
-      targetRevision: HEAD
+      targetRevision: feature/cert-manager-step-acme
       ref: values
   destination:
     name: in-cluster
