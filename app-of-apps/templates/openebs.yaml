@@ -20,14 +20,8 @@ spec:
       helm:
         valueFiles:
           - $values/openebs/values.yaml
-    # - repoURL: https://github.com/tombulled/charts
-    #   path: openebs-extras
-    #   targetRevision: HEAD
-    #   helm:
-    #     valueFiles:
-    #       - $values/openebs/values.yaml
     - repoURL: https://github.com/tombulled/values
-      targetRevision: HEAD
+      targetRevision: bugfix/storage
       ref: values
   destination:
     name: in-cluster
