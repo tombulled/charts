@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rook-ceph
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.rook.io/release
+      chart: rook-ceph
+      targetRevision: 1.18.8
+      helm:
+        valueFiles:
+          - $values/rook-ceph/values.yaml
+    - repoURL: https://github.com/tombulled/values
+      targetRevision: bugfix/storage # HEAD
+      ref: values
+  destination:
+    name: in-cluster
+    namespace: rook-ceph
+  info:
+    - name: "Home:"
+      value: "https://rook.io/"
+    - name: "Docs:"
+      value: "https://rook.io/docs/rook/latest-release/Getting-Started/intro/"
+    - name: "GitHub:"
+      value: "https://github.com/rook/rook"
+    - name: "ArtifactHub:"
+      value: "https://artifacthub.io/packages/helm/rook/rook-ceph"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
