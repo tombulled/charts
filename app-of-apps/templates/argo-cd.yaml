@@ -15,7 +15,7 @@ spec:
         valueFiles:
           - $values/argo-cd/values.yaml
     - repoURL: https://github.com/tombulled/values
-      targetRevision: HEAD
+      targetRevision: bugfix/storage # HEAD
       ref: values
   destination:
     name: in-cluster
